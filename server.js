@@ -11,11 +11,12 @@ var express = require('express'),
 //////////////////////////////////////////////////////
 var server =  http.createServer(app);
 var io = socketIo.listen(server);
-server.listen(8080);
+//server.listen(8080);
 
 //////////////////////////////////////////////////////
 // Tell express web server where our html lives
 //////////////////////////////////////////////////////
+app.set('port', (process.env.PORT || 8080));
 app.use(express.static(__dirname + '/www'));
 console.log("Server running on 127.0.0.1:8080");
 
