@@ -6,19 +6,19 @@ var express = require('express'),
     http = require('http'),
     socketIo = require('socket.io');
 
+const PORT = process.env.PORT || 8080;
 //////////////////////////////////////////////////////
 // start webserver on port 8080
 //////////////////////////////////////////////////////
 var server =  http.createServer(app);
 var io = socketIo.listen(server);
-server.listen(8080);
+server.listen(PORT);
+console.log('Server Listening on ' + PORT);
 
 //////////////////////////////////////////////////////
 // Tell express web server where our html lives
 //////////////////////////////////////////////////////
-app.set('port', (process.env.PORT || 8080));
 app.use(express.static(__dirname + '/www'));
-console.log("Server running on 127.0.0.1:8080");
 
 //////////////////////////////////////////////////////
 // Store the lines drawn
