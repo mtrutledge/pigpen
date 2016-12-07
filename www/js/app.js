@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
    canvas.onmouseup = function(e){ mouse.click = false; };
 
    canvas.onmousemove = function(e) {
-      // normalize mouse position to range 0.0 - 1.0
+      // Normalize mouse position so we dont have to worry about window sizes
       mouse.pos.x = e.clientX / width;
       mouse.pos.y = e.clientY / height;
       mouse.move = true;
@@ -31,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function() {
 	socket.on('drawEvent', function (data) {
       var line = data.line;
       context.beginPath();
-      context.moveTo(line[0].x * width, line[0].y * height);
-      context.lineTo(line[1].x * width, line[1].y * height);
+      context.moveTo(line[0].x * width, line[0].y * height); // De-Normalize the position
+      context.lineTo(line[1].x * width, line[1].y * height); // De-Normalize the position
       context.stroke();
    });
 
